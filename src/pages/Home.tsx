@@ -1,8 +1,22 @@
 import './../styles/Home.css';
 import profileImage from './../assets/IMG_5282.jpg';
 import { Link } from 'react-router-dom'; 
+import { useEffect } from 'react';
 
 export const Home = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const parallaxImage = document.querySelector('.intro-image img') as HTMLImageElement;
+
+      if (parallaxImage) {
+        const offset = window.pageYOffset;
+        parallaxImage.style.transform = `translateY(${offset * 0.1}px)`;
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
   return (
     <section className="home">
       <div className="intro">

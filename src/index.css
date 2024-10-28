@@ -3,17 +3,17 @@ body {
   padding-top: 80px; 
 }
 html, body {
-  height: 100%; /* Занимаем всю высоту экрана */
+  height: 100%; 
   margin: 0;
-  font-family: Arial, sans-serif; /* Базовый шрифт */
+  font-family: Arial, sans-serif; 
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Минимальная высота на весь экран */
+  min-height: 100vh; 
 }
 
 main {
-  flex: 1; /* Контент будет занимать всё оставшееся пространство */
+  flex: 1; 
 }

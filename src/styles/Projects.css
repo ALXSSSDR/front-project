@@ -64,10 +64,11 @@
   padding: 30px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-10px) scale(1.05);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
@@ -98,17 +99,103 @@
   background: #005f8b;
 }
 
-.project-card {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.show-form-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bb5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+.show-form-button:hover {
+  background-color: #005f8b;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.modal-content h3 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.add-project-form {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.add-project-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #555;
+  text-align: left;
+}
+
+.add-project-form input,
+.add-project-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.submit-button,
+.cancel-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-button {
+  background-color: #007bb5;
+  color: #fff;
+}
+
+.submit-button:hover {
+  background-color: #005f8b;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+  margin-left: 10px;
+}
+
+.cancel-button:hover {
+  background-color: #bbb;
 }

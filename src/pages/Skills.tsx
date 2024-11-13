@@ -45,12 +45,14 @@ export const Skills = () => {
         ))}
       </div>
 
-      <div className={`modal ${selectedSkill ? 'show' : ''}`}>
-        <div className="modal-content">
-          <p>{selectedSkill}</p>
-          <button onClick={closeModal} className="modal-close">Close</button>
+      {selectedSkill && (
+        <div className="skills-modal skills-show">
+          <div className="skills-modal-content">
+            <p>{selectedSkill}</p>
+            <button onClick={closeModal} className="skills-modal-close">Close</button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

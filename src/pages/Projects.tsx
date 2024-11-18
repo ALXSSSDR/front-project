@@ -1,15 +1,16 @@
 import './../styles/Projects.css';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
 import { addProject } from '../store/projectsSlice';
+import { v4 as uuidv4 } from 'uuid'; 
 
 export const Projects = () => {
   const dispatch = useDispatch<AppDispatch>();
   const projects = useSelector((state: RootState) => state.projects.items);
+
   const [selectedTech, setSelectedTech] = useState<string>('All');
   const [showModal, setShowModal] = useState(false); 
-
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [technologies, setTechnologies] = useState('');
@@ -17,7 +18,8 @@ export const Projects = () => {
 
   const handleShowModal = () => {
     const password = prompt("Please enter the password to add a project:");
-    if (password === '12345') { 
+
+    if (password === import.meta.env.VITE_PROJECT_PASSWORD) {
       setShowModal(true);
     } else {
       alert("Incorrect password.");
@@ -28,7 +30,7 @@ export const Projects = () => {
     e.preventDefault();
 
     const newProject = {
-      id: projects.length + 1,
+      id: uuidv4(), 
       title,
       description,
       technologies: technologies.split(',').map((tech) => tech.trim()),
@@ -44,12 +46,12 @@ export const Projects = () => {
     setShowModal(false);
   };
 
+  const uniqueTechnologies = useMemo(() => {
+    return Array.from(new Set(projects.flatMap((project) => project.technologies)));
+  }, [projects]);
+
   const filteredProjects = projects.filter((project) =>
     selectedTech === 'All' ? true : project.technologies.includes(selectedTech)
-  );
-
-  const uniqueTechnologies = Array.from(
-    new Set(projects.flatMap((project) => project.technologies))
   );
 
   return (
@@ -57,7 +59,10 @@ export const Projects = () => {
       <h2 className="projects-title">Projects</h2>
 
       <div className="tech-filter">
-        <button onClick={() => setSelectedTech('All')} className={selectedTech === 'All' ? 'active' : ''}>
+        <button 
+          onClick={() => setSelectedTech('All')} 
+          className={selectedTech === 'All' ? 'active' : ''}
+        >
           All
         </button>
         {uniqueTechnologies.map((tech) => (

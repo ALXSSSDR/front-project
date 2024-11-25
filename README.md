@@ -1,50 +1,73 @@
-# React + TypeScript + Vite
+# 🌟 Сайт-портфолио на React и TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Добро пожаловать в мой проект **Сайт-портфолио**! Это современный, интерактивный и полностью адаптивный сайт, который я разработал с использованием **React** и **TypeScript**. Сайт демонстрирует мои навыки, проекты и опыт, а также отражает умение работать с современными технологиями.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Особенности проекта
 
-## Expanding the ESLint configuration
+### ✅ **Чистый и структурированный код**
+- Проект организован в понятную структуру с отдельными папками для компонентов, страниц, стилей, данных и хранилища.
+- Использование **TypeScript** для строгой типизации, что повышает надежность и упрощает поддержку проекта.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### ✅ **Адаптивный дизайн**
+- Сайт выглядит отлично на всех устройствах: мобильных телефонах, планшетах и настольных компьютерах.
+- Кроссбраузерная совместимость для обеспечения корректной работы во всех популярных браузерах.
 
-- Configure the top-level `parserOptions` property like this:
+### ✅ **Динамический контент**
+- Страница проектов загружает данные из **GitHub API**.
+- Реализованы фильтрация и сортировка проектов по используемым технологиям.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### ✅ **Интерактивные элементы**
+- Форма обратной связи с проверкой вводимых данных в реальном времени и отображением сообщений об успехе или ошибке.
+- Анимации на карточках проектов, кнопках и других элементах.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### ✅ **Управление состоянием**
+- Используется **Redux Toolkit** для глобального управления состоянием.
+- Сохранение пользовательских предпочтений (например, темы) с помощью `localStorage`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### ✅ **Переключение темы**
+- Возможность переключения между светлой и тёмной темами с использованием `Context API`.
+- Все компоненты автоматически адаптируются под выбранную тему.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### ✅ **Современные анимации**
+- Использование **Framer Motion** для анимации переходов между страницами и плавного появления контента.
+- Анимации при наведении на элементы для улучшения пользовательского опыта.
+
+---
+
+## 🛠️ Используемые технологии
+
+### **Frontend**
+- **React**: Создание компонентной архитектуры.
+- **TypeScript**: Для строгой типизации и повышения стабильности кода.
+- **React Router**: Обеспечивает навигацию между страницами.
+- **Axios**: Для выполнения HTTP-запросов и обработки API-ответов.
+
+### **Управление состоянием**
+- **Redux Toolkit**: Для эффективного глобального управления состоянием приложения.
+- **LocalStorage**: Для сохранения пользовательских данных между сеансами.
+
+### **Стилизация**
+- **Custom CSS**: Для уникального дизайна и анимации.
+
+### **Интеграция API**
+- **GitHub REST API**: Для динамического получения списка моих публичных репозиториев.
+- Токен API используется для повышения безопасности и увеличения лимита запросов.
+
+---
+
+## 📂 Структура проекта
+
+```plaintext
+src/
+├── assets/            
+├── components/        
+├── context/            
+├── data/               
+├── pages/             
+├── services/          
+├── store/              
+├── styles/             
+├── types/             
+└── App.tsx             

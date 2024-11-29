@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import projectsReducer from './projectsSlice';
+import formReducer from './formSlice'; 
 import { projects as initialProjects } from '../data/projects';
 
 const preloadedState = {
@@ -9,6 +10,7 @@ const preloadedState = {
 export const store = configureStore({
   reducer: {
     projects: projectsReducer,
+    form: formReducer, 
   },
   preloadedState,
 });

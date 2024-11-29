@@ -11,10 +11,10 @@ interface AddProjectModalProps {
 }
 
 export const AddProjectModal: React.FC<AddProjectModalProps> = ({ showModal, setShowModal, password, dispatch }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [technologies, setTechnologies] = useState('');
-  const [link, setLink] = useState('');
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [technologies, setTechnologies] = useState<string>('');
+  const [link, setLink] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export const AddProjectModal: React.FC<AddProjectModalProps> = ({ showModal, set
       id: uuidv4(),
       title,
       description,
-      technologies: technologies.split(',').map((tech) => tech.trim()),
+      technologies: technologies.split(',').map((tech: string) => tech.trim()), 
       link,
     };
 

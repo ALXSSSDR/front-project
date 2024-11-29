@@ -1,10 +1,9 @@
-// src/components/Projects.tsx
 import './../styles/Projects.css';
 import { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
-import { addProject } from '../store/projectsSlice';
 import { AddProjectModal } from '../components/AddProjectModal'; 
+import { Project } from '../types/Project';
 
 export const Projects = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -12,22 +11,24 @@ export const Projects = () => {
 
   const [selectedTech, setSelectedTech] = useState<string>('All');
   const [showModal, setShowModal] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState<string>('');  
 
   const handleShowModal = () => {
     const password = prompt("Please enter the password to add a project:");
 
     if (password === import.meta.env.VITE_PROJECT_PASSWORD) {
       setShowModal(true);
+      setErrorMessage(''); 
     } else {
-      alert("Incorrect password.");
+      setErrorMessage('Incorrect password.'); 
     }
   };
 
   const uniqueTechnologies = useMemo(() => {
-    return Array.from(new Set(projects.flatMap((project) => project.technologies)));
+    return Array.from(new Set(projects.flatMap((project: Project) => project.technologies)));
   }, [projects]);
 
-  const filteredProjects = projects.filter((project) =>
+  const filteredProjects = projects.filter((project: Project) =>
     selectedTech === 'All' ? true : project.technologies.includes(selectedTech)
   );
 
@@ -53,8 +54,10 @@ export const Projects = () => {
         ))}
       </div>
 
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+
       <div className="projects-container">
-        {filteredProjects.map((project) => (
+        {filteredProjects.map((project: Project) => (
           <div className="project-card" key={project.id}>
             <h3 className="project-title">{project.title}</h3>
             <p className="project-description">{project.description}</p>
@@ -69,7 +72,6 @@ export const Projects = () => {
         Add New Project
       </button>
 
-      
       <AddProjectModal 
         showModal={showModal}
         setShowModal={setShowModal}

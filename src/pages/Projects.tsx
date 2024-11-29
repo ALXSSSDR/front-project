@@ -1,9 +1,10 @@
+// src/components/Projects.tsx
 import './../styles/Projects.css';
 import { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
 import { addProject } from '../store/projectsSlice';
-import { v4 as uuidv4 } from 'uuid'; 
+import { AddProjectModal } from '../components/AddProjectModal'; 
 
 export const Projects = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -11,10 +12,6 @@ export const Projects = () => {
 
   const [selectedTech, setSelectedTech] = useState<string>('All');
   const [showModal, setShowModal] = useState(false); 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [technologies, setTechnologies] = useState('');
-  const [link, setLink] = useState('');
 
   const handleShowModal = () => {
     const password = prompt("Please enter the password to add a project:");
@@ -24,26 +21,6 @@ export const Projects = () => {
     } else {
       alert("Incorrect password.");
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const newProject = {
-      id: uuidv4(), 
-      title,
-      description,
-      technologies: technologies.split(',').map((tech) => tech.trim()),
-      link,
-    };
-
-    dispatch(addProject(newProject));
-
-    setTitle('');
-    setDescription('');
-    setTechnologies('');
-    setLink('');
-    setShowModal(false);
   };
 
   const uniqueTechnologies = useMemo(() => {
@@ -92,56 +69,13 @@ export const Projects = () => {
         Add New Project
       </button>
 
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>Add New Project</h3>
-            <form onSubmit={handleSubmit} className="add-project-form">
-              <label>
-                Title:
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                />
-              </label>
-
-              <label>
-                Description:
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  required
-                />
-              </label>
-
-              <label>
-                Technologies (comma separated):
-                <input
-                  type="text"
-                  value={technologies}
-                  onChange={(e) => setTechnologies(e.target.value)}
-                  required
-                />
-              </label>
-
-              <label>
-                GitHub Link:
-                <input
-                  type="url"
-                  value={link}
-                  onChange={(e) => setLink(e.target.value)}
-                  required
-                />
-              </label>
-
-              <button type="submit" className="submit-button">Add Project</button>
-              <button type="button" onClick={() => setShowModal(false)} className="cancel-button">Cancel</button>
-            </form>
-          </div>
-        </div>
-      )}
+      
+      <AddProjectModal 
+        showModal={showModal}
+        setShowModal={setShowModal}
+        password={import.meta.env.VITE_PROJECT_PASSWORD}
+        dispatch={dispatch}
+      />
     </section>
   );
 };

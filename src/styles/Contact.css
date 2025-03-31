@@ -18,6 +18,10 @@
   animation: fadeIn 1s ease-in-out;
 }
 
+body.dark .contact-title {
+  color: #e0e0e0;
+}
+
 .contact-title::after {
   content: '';
   width: 280px;
@@ -99,14 +103,14 @@
 }
 
 .error-message {
-  color: #ff6b6b; 
+  color: #ff6b6b;
   font-size: 0.9em;
   margin-top: 5px;
   display: block;
 }
 
 .success-message {
-  color: #66bb6a; 
+  color: #66bb6a;
   background-color: rgba(102, 187, 106, 0.2);
   border: 1px solid #66bb6a;
   padding: 10px 15px;
@@ -120,35 +124,89 @@
 
 @keyframes fadeInSuccess {
   0% {
-      opacity: 0;
-      transform: translateY(-10px);
+    opacity: 0;
+    transform: translateY(-10px);
   }
   100% {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .contact-title {
+    font-size: 2.5em;
+  }
+
+  .contact-form {
+    padding: 40px;
+    max-width: 90%;
+  }
+
+  .submit-button {
+    font-size: 1.1em;
+  }
 }
 
 @media (max-width: 768px) {
   .contact-title {
-      font-size: 2.5em;
+    font-size: 2em;
   }
 
   .contact-form {
-      padding: 30px;
+    padding: 30px;
+    max-width: 95%;
   }
 
   .submit-button {
-      font-size: 1.1em;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+
+  .contact-form {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .form-group label {
+    font-size: 1em;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  .submit-button {
+    font-size: 0.9em;
+    padding: 10px;
   }
 }
